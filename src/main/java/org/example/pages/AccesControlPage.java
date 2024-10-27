@@ -12,7 +12,7 @@ public class AccesControlPage {
     private final UserService userService;
 
     @Autowired
-    public AccessControlPage(UserService userService) {
+    public AccesControlPage(UserService userService) {
         this.userService = userService;
     }
 
