@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${pageTitle}"></title>
+</head>
+<body>
+<h1 th:text="${pageTitle}"></h1>
+<h2>Usuarios</h2>
+<ul>
+  <li th:each="user : ${users}" th:text="${user.username}"></li>
+</ul>
+<h2>Roles</h2>
+<ul>
+  <li th:each="role : ${roles}" th:text="${role.name}"></li>
+</ul>
+</body>
+</html>

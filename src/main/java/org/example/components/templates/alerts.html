@@ -1,0 +1,5 @@
+<div th:if="${alerts.size() > 0}">
+  <ul>
+    <li th:each="alert : ${alerts}" th:text="${alert}"></li>
+  </ul>
+</div>

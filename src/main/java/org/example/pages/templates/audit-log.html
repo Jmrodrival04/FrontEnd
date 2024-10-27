@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${pageTitle}"></title>
+</head>
+<body>
+<h1 th:text="${pageTitle}"></h1>
+<ul>
+    <li th:each="log : ${auditLogs}" th:text="${log}"></li>
+</ul>
+</body>
+</html>
