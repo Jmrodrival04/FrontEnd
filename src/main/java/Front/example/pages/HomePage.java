@@ -1,4 +1,4 @@
-package org.example.pages;
+package Front.example.pages;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

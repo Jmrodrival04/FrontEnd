@@ -1,6 +1,6 @@
-package org.example.pages;
+package Front.example.pages;
 
-import org.example.services.UserService;
+import Front.example.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

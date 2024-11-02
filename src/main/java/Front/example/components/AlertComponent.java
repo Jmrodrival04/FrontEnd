@@ -1,4 +1,4 @@
-package org.example.components;
+package Front.example.components;
 
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;

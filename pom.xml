@@ -16,7 +16,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.1.4</version>
-        <relativePath/> <!-- busca la versión más reciente de Spring Boot -->
+        <relativePath/>
     </parent>
 
     <properties>
@@ -42,7 +42,7 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
-        <!-- Dependencia de Spring Boot para Spring MVC (para construir API REST) -->
+        <!-- Dependencia de Spring Boot para API REST y MVC -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -60,7 +60,7 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
-        <!-- Dependencia de Spring Boot para JPA (si necesitas acceso a base de datos) -->
+        <!-- Dependencia de Spring Boot para JPA (acceso a base de datos) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -73,11 +73,33 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!-- Dependencia de Swagger para documentación de API -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+
+        <!-- Dependencia de Lombok para simplificar el código (opcional) -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.24</version>
+            <scope>provided</scope>
+        </dependency>
+
         <!-- Dependencias para pruebas -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <!-- Dependencia para JWT si se necesita para seguridad (opcional) -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
         </dependency>
     </dependencies>
 
@@ -90,5 +112,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
