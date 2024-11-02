@@ -2,12 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${pageTitle}"></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Auditoría</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-<h1 th:text="${pageTitle}"></h1>
-<ul>
-    <li th:each="log : ${auditLogs}" th:text="${log}"></li>
-</ul>
+<header>
+    <h1>Registro de Auditoría</h1>
+</header>
+<nav class="main-nav">
+    <a href="/">Inicio</a> |
+    <a href="/spells">Gestión de Hechizos</a> |
+    <a href="/users">Gestión de Usuarios</a> |
+    <a href="/domain">Dominio</a>
+</nav>
+<section>
+    <h2>Eventos Recientes</h2>
+    <ul class="audit-list">
+        <li th:each="log : ${auditLogs}">
+            <span class="audit-timestamp" th:text="${log.timestamp}">Fecha</span> -
+            <span class="audit-user" th:text="${log.performedBy}">Usuario</span> -
+            <span class="audit-action" th:text="${log.action}">Acción</span>
+        </li>
+    </ul>
+</section>
+<footer>
+    <p>&copy; 2024 Ministerio de Magia. Todos los derechos reservados.</p>
+</footer>
 </body>
 </html>

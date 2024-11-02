@@ -2,13 +2,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${pageTitle}"></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Hechizos</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-<h1 th:text="${pageTitle}"></h1>
-<ul>
-    <li th:each="spell : ${spells}" th:text="${spell.name}"></li>
-</ul>
+<header>
+    <h1>Gestión de Hechizos</h1>
+</header>
+<nav class="main-nav">
+    <a href="/">Inicio</a> |
+    <a href="/audit">Registro de Auditoría</a> |
+    <a href="/users">Gestión de Usuarios</a> |
+    <a href="/model">Modelos</a>
+</nav>
+<section>
+    <h2>Hechizos Disponibles</h2>
+    <ul class="spell-list">
+        <li th:each="spell : ${spells}">
+            <span class="spell-name" th:text="${spell.name}">Nombre</span> -
+            <span class="spell-type" th:text="${spell.type}">Tipo</span> -
+            <span class="spell-effect" th:text="${spell.effect}">Efecto</span>
+            <form th:action="@{'/spells/delete/' + ${spell.id}}" method="post" style="display: inline;">
+                <button type="submit" class="delete-btn">Eliminar</button>
+            </form>
+        </li>
+    </ul>
 
+    <h2>Agregar Nuevo Hechizo</h2>
+    <form th:action="@{/spells/add}" method="post" class="spell-form">
+        <label for="name">Nombre del Hechizo:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="type">Tipo de Hechizo:</label>
+        <input type="text" id="type" name="type" required>
+
+        <label for="effect">Descripción del Efecto:</label>
+        <textarea id="effect" name="effect" required></textarea>
+
+        <button type="submit" class="add-btn">Agregar Hechizo</button>
+    </form>
+</section>
+<footer>
+    <p>&copy; 2024 Ministerio de Magia. Todos los derechos reservados.</p>
+</footer>
 </body>
 </html>
