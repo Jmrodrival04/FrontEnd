@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entidades del Modelo</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<header>
+  <h1>Entidades del Modelo</h1>
+</header>
+<nav>
+  <a href="/">Inicio</a> |
+  <a href="/spells">Gestión de Hechizos</a> |
+  <a href="/audit">Registro de Auditoría</a> |
+  <a href="/users">Gestión de Usuarios</a> |
+  <a href="/domain">Dominio</a>
+</nav>
+
+<section>
+  <h2>Registros de Auditoría</h2>
+  <table>
+    <thead>
+    <tr>
+      <th>Fecha y Hora</th>
+      <th>Usuario</th>
+      <th>Acción</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="log : ${auditLogs}">
+      <td th:text="${log.timestamp}">Fecha y Hora</td>
+      <td th:text="${log.performedBy}">Usuario</td>
+      <td th:text="${log.action}">Acción</td>
+    </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Roles de Usuario</h2>
+  <table>
+    <thead>
+    <tr>
+      <th>Rol</th>
+      <th>Descripción</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="role : ${roles}">
+      <td th:text="${role.roleName}">Rol</td>
+      <td th:text="${role.description}">Descripción</td>
+    </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Hechizos</h2>
+  <table>
+    <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Tipo</th>
+      <th>Efecto</th>
+      <th>Nivel</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="spell : ${spells}">
+      <td th:text="${spell.name}">Nombre</td>
+      <td th:text="${spell.type}">Tipo</td>
+      <td th:text="${spell.effect}">Efecto</td>
+      <td th:text="${spell.level}">Nivel</td>
+    </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Usuarios</h2>
+  <table>
+    <thead>
+    <tr>
+      <th>Nombre de Usuario</th>
+      <th>Rol</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+      <td th:text="${user.username}">Nombre de Usuario</td>
+      <td th:text="${user.role.roleName}">Rol</td>
+    </tr>
+    </tbody>
+  </table>
+</section>
+
+<footer>
+  <p>&copy; 2024 Ministerio de Magia. Todos los derechos reservados.</p>
+</footer>
+</body>
+</html>

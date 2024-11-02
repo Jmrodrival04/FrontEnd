@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Auditoría</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<header>
+    <h1>Registro de Auditoría</h1>
+</header>
+<nav>
+    <a href="/">Inicio</a> |
+    <a href="/spells">Gestión de Hechizos</a> |
+    <a href="/users">Gestión de Usuarios</a>
+</nav>
+<section>
+    <h2>Eventos de Auditoría Recientes</h2>
+    <ul>
+        <li th:each="log : ${auditLogs}">
+            <span th:text="${log.timestamp}">Fecha</span> -
+            <span th:text="${log.performedBy}">Usuario</span> -
+            <span th:text="${log.action}">Acción</span>
+        </li>
+    </ul>
+</section>
+<footer>
+    <p>&copy; 2024 Ministerio de Magia. Todos los derechos reservados.</p>
+</footer>
+</body>
+</html>

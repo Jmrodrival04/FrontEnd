@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentación de Clases de Utilidad</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<header>
+    <h1>Documentación de Clases de Utilidad</h1>
+</header>
+<section>
+    <h2>Utilidades del Sistema</h2>
+
+    <article>
+        <h3>DateUtil</h3>
+        <p>La clase <strong>DateUtil</strong> proporciona métodos para manejar y formatear fechas.</p>
+        <ul>
+            <li><strong>formatDate(LocalDateTime date)</strong>: Formatea la fecha en una cadena.</li>
+            <li><strong>parseDate(String date)</strong>: Convierte una cadena en formato de fecha a LocalDateTime.</li>
+        </ul>
+    </article>
+
+    <article>
+        <h3>SecurityUtil</h3>
+        <p>La clase <strong>SecurityUtil</strong> contiene métodos relacionados con la encriptación y verificación de contraseñas.</p>
+        <ul>
+            <li><strong>encryptPassword(String password)</strong>: Encripta una contraseña.</li>
+            <li><strong>checkPassword(String rawPassword, String encodedPassword)</strong>: Verifica una contraseña sin encriptar con una encriptada.</li>
+        </ul>
+    </article>
+
+    <article>
+        <h3>AuditUtil</h3>
+        <p>La clase <strong>AuditUtil</strong> proporciona métodos para registrar eventos de auditoría.</p>
+        <ul>
+            <li><strong>logEvent(String action, String performedBy)</strong>: Crea un log de auditoría con acción y usuario.</li>
+        </ul>
+    </article>
+
+    <article>
+        <h3>StringUtil</h3>
+        <p>La clase <strong>StringUtil</strong> incluye métodos para manipular cadenas.</p>
+        <ul>
+            <li><strong>isNullOrEmpty(String str)</strong>: Verifica si una cadena es nula o está vacía.</li>
+            <li><strong>capitalizeFirstLetter(String str)</strong>: Capitaliza la primera letra de una cadena.</li>
+        </ul>
+    </article>
+</section>
+</body>
+</html>

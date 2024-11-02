@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Hechizos</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<header>
+    <h1>Gestión de Hechizos</h1>
+</header>
+<nav>
+    <a href="/">Inicio</a> |
+    <a href="/audit">Registro de Auditoría</a> |
+    <a href="/users">Gestión de Usuarios</a>
+</nav>
+<section>
+    <h2>Hechizos Disponibles</h2>
+    <ul>
+        <li th:each="spell : ${spells}">
+            <span th:text="${spell.name}">Nombre</span> -
+            <span th:text="${spell.type}">Tipo</span> -
+            <span th:text="${spell.effect}">Efecto</span>
+            <form th:action="@{'/spells/delete/' + ${spell.id}}" method="post" style="display: inline;">
+                <button type="submit">Eliminar</button>
+            </form>
+        </li>
+    </ul>
+
+    <h2>Agregar Nuevo Hechizo</h2>
+    <form th:action="@{/spells/add}" method="post">
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="type">Tipo:</label>
+        <input type="text" id="type" name="type" required>
+
+        <label for="effect">Efecto:</label>
+        <input type="text" id="effect" name="effect" required>
+
+        <button type="submit">Agregar Hechizo</button>
+    </form>
+</section>
+<footer>
+    <p>&copy; 2024 Ministerio de Magia. Todos los derechos reservados.</p>
+</footer>
+</body>
+</html>
