@@ -3,6 +3,7 @@ package Back.example.rest;
 import Back.example.model.Spell;
 import Back.example.service.SpellService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,23 +15,21 @@ public class SpellRestController {
     @Autowired
     private SpellService spellService;
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping
     public List<Spell> getAllSpells() {
-        return spellService.findAll();
+        return spellService.findAllSpells();
     }
 
-    @GetMapping("/{id}")
-    public Spell getSpellById(@PathVariable Long id) {
-        return spellService.findById(id);
-    }
-
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public Spell createSpell(@RequestBody Spell spell) {
-        return spellService.save(spell);
+        return spellService.saveSpell(spell);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public void deleteSpell(@PathVariable Long id) {
-        spellService.deleteById(id);
+        spellService.deleteSpell(id);
     }
 }

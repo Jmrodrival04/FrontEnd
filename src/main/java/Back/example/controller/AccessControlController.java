@@ -1,7 +1,7 @@
-package org.example.controller;
+package Back.example.controller;
 
-import org.example.model.User;
-import org.example.service.UserService;
+import Back.example.model.User;
+import Back.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,11 +22,11 @@ public class AccessControlController {
 
     @GetMapping("/users")
     public List<User> getAllUsers() {
-        return userService.getAllUsers();
+        return userService.findAll(); // Cambiado para coincidir con UserService
     }
 
     @PostMapping("/users")
     public User addUser(@RequestBody User user) {
-        return userService.addUser(user);
+        return userService.save(user); // Cambiado para coincidir con UserService
     }
 }

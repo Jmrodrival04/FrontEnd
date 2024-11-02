@@ -19,7 +19,7 @@ public class AuditLogController {
 
     @GetMapping("/audit")
     public String getAuditLogs(Model model) {
-        model.addAttribute("auditLogs", auditService.getAuditLogs());
+        model.addAttribute("auditLogs", auditService.findAll()); // Cambiado para coincidir con el método en AuditService
         return "audit-log"; // Muestra el archivo audit-log.html en templates
     }
 }

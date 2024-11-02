@@ -22,13 +22,14 @@ public class SpellController {
 
     @GetMapping("/spells")
     public String getSpells(Model model) {
-        model.addAttribute("spells", spellService.getAllSpells());
+        model.addAttribute("spells", spellService.findAllSpells()); // Cambiado a findAllSpells para coincidir con el método en SpellService
         return "spells"; // Muestra el archivo spells.html en templates
     }
 
     @PostMapping("/spells/add")
     public String addSpell(@RequestParam String name, @RequestParam String type, @RequestParam String effect) {
-        spellService.addSpell(new Spell(name, type, effect));
+        Spell newSpell = new Spell(name, type, effect);
+        spellService.saveSpell(newSpell); // Cambiado a saveSpell para coincidir con el método en SpellService
         return "redirect:/spells"; // Redirige a la página de hechizos después de agregar
     }
 

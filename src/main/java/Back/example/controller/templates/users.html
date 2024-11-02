@@ -10,7 +10,7 @@
 <header>
     <h1>Gestión de Usuarios</h1>
 </header>
-<nav>
+<nav class="main-nav">
     <a href="/">Inicio</a> |
     <a href="/spells">Gestión de Hechizos</a> |
     <a href="/audit">Registro de Auditoría</a>
@@ -20,7 +20,7 @@
     <ul>
         <li th:each="user : ${users}">
             <span th:text="${user.username}">Nombre de Usuario</span> -
-            <span th:text="${user.role}">Rol</span>
+            <span th:text="${user.role.name}">Rol</span>
         </li>
     </ul>
 
@@ -35,8 +35,5 @@
         <button type="submit">Agregar Usuario</button>
     </form>
 </section>
-<footer>
-    <p>&copy; 2024 Ministerio de Magia. Todos los derechos reservados.</p>
-</footer>
 </body>
 </html>

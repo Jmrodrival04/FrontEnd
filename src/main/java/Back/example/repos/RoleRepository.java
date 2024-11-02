@@ -4,9 +4,11 @@ import Back.example.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Long> {
 
-    // Ejemplo de método personalizado: encontrar rol por nombre
-    Role findByRoleName(String roleName);
+    // Encuentra un rol por su nombre
+    Optional<Role> findByName(String name);
 }

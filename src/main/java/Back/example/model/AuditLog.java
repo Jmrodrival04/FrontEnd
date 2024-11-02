@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 @Entity
@@ -13,8 +14,12 @@ public class AuditLog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "La acción es obligatoria")
     private String action;
+
+    @NotBlank(message = "El campo 'realizado por' es obligatorio")
     private String performedBy;
+
     private LocalDateTime timestamp;
 
     // Constructor sin argumentos requerido por JPA
@@ -29,11 +34,11 @@ public class AuditLog {
         this.timestamp = timestamp;
     }
 
-    // Constructor personalizado sin id y timestamp, para crear nuevos registros de auditoría
+    // Constructor para crear nuevos registros de auditoría
     public AuditLog(String action, String performedBy) {
         this.action = action;
         this.performedBy = performedBy;
-        this.timestamp = LocalDateTime.now();
+        this.timestamp = LocalDateTime.now(); // Configurar la fecha y hora actuales
     }
 
     // Getters y Setters

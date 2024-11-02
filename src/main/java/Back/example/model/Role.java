@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Role {
@@ -12,24 +13,21 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String roleName;
-    private String description;
+    @NotBlank(message = "El nombre del rol es obligatorio")
+    private String name;
 
     // Constructor sin argumentos requerido por JPA
-    public Role() {
+    public Role() {}
+
+    // Constructor para inicializar el nombre del rol
+    public Role(String name) {
+        this.name = name;
     }
 
     // Constructor completo
-    public Role(Long id, String roleName, String description) {
+    public Role(Long id, String name) {
         this.id = id;
-        this.roleName = roleName;
-        this.description = description;
-    }
-
-    // Constructor personalizado para crear un nuevo rol
-    public Role(String roleName, String description) {
-        this.roleName = roleName;
-        this.description = description;
+        this.name = name;
     }
 
     // Getters y Setters
@@ -41,29 +39,20 @@ public class Role {
         this.id = id;
     }
 
-    public String getRoleName() {
-        return roleName;
+    public String getName() {
+        return name;
     }
 
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    // Método toString para depuración
+    // Método toString para facilitar la depuración
     @Override
     public String toString() {
         return "Role{" +
                 "id=" + id +
-                ", roleName='" + roleName + '\'' +
-                ", description='" + description + '\'' +
+                ", name='" + name + '\'' +
                 '}';
     }
 }

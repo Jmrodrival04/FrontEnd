@@ -11,8 +11,12 @@ import java.util.List;
 @RequestMapping("/api/users")
 public class UserRestController {
 
+    private final UserService userService;
+
     @Autowired
-    private UserService userService;
+    public UserRestController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping
     public List<User> getAllUsers() {
@@ -21,7 +25,8 @@ public class UserRestController {
 
     @GetMapping("/{id}")
     public User getUserById(@PathVariable Long id) {
-        return userService.findById(id);
+        return userService.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado con ID: " + id));
     }
 
     @PostMapping

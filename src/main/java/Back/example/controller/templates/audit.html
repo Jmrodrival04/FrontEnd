@@ -10,18 +10,18 @@
 <header>
     <h1>Registro de Auditoría</h1>
 </header>
-<nav>
+<nav class="main-nav">
     <a href="/">Inicio</a> |
     <a href="/spells">Gestión de Hechizos</a> |
     <a href="/users">Gestión de Usuarios</a>
 </nav>
 <section>
-    <h2>Eventos de Auditoría Recientes</h2>
-    <ul>
+    <h2>Eventos Recientes</h2>
+    <ul class="audit-list">
         <li th:each="log : ${auditLogs}">
-            <span th:text="${log.timestamp}">Fecha</span> -
-            <span th:text="${log.performedBy}">Usuario</span> -
-            <span th:text="${log.action}">Acción</span>
+            <span class="audit-timestamp" th:text="${log.timestamp}">Fecha</span> -
+            <span class="audit-user" th:text="${log.performedBy}">Usuario</span> -
+            <span class="audit-action" th:text="${log.action}">Acción</span>
         </li>
     </ul>
 </section>

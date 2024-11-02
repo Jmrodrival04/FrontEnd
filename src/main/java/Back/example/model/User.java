@@ -2,10 +2,16 @@ package Back.example.model;
 
 import Back.example.util.Auditable;
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.Collections;
 
 @Entity
-public class User implements Auditable {
+public class User implements Auditable, UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,7 +21,7 @@ public class User implements Auditable {
     private String password;
 
     @ManyToOne
-    private Role role; // Relación con la entidad Role
+    private Role role;
 
     // Campos de auditoría
     private String createdBy;
@@ -24,8 +30,7 @@ public class User implements Auditable {
     private LocalDateTime lastModifiedDate;
 
     // Constructor sin argumentos requerido por JPA
-    public User() {
-    }
+    public User() {}
 
     // Constructor completo
     public User(Long id, String username, String password, Role role, String createdBy, LocalDateTime createdDate, String lastModifiedBy, LocalDateTime lastModifiedDate) {
@@ -34,7 +39,7 @@ public class User implements Auditable {
         this.password = password;
         this.role = role;
         this.createdBy = createdBy;
-        this.createdDate = createdDate;
+        this.createdDate = createdDate != null ? createdDate : LocalDateTime.now();
         this.lastModifiedBy = lastModifiedBy;
         this.lastModifiedDate = lastModifiedDate;
     }
@@ -119,6 +124,32 @@ public class User implements Auditable {
     @Override
     public void setLastModifiedDate(LocalDateTime lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
+    }
+
+    // Implementación de UserDetails
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Collections.singletonList(new SimpleGrantedAuthority(role.getName()));
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
     // Método toString para depuración
