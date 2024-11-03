@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/spells") // Prefijo para todas las rutas de hechizos
 public class SpellController {
 
     private final SpellService spellService;
@@ -20,20 +22,20 @@ public class SpellController {
         this.spellService = spellService;
     }
 
-    @GetMapping("/spells")
+    @GetMapping
     public String getSpells(Model model) {
         model.addAttribute("spells", spellService.findAllSpells());
-        return "spells";
+        return "spells";  // Carga el archivo spells.html desde /templates/
     }
 
-    @PostMapping("/spells/add")
+    @PostMapping("/add")
     public String addSpell(@RequestParam String name, @RequestParam String type, @RequestParam String effect) {
         Spell newSpell = new Spell(name, type, effect);
         spellService.saveSpell(newSpell);
         return "redirect:/spells";
     }
 
-    @PostMapping("/spells/delete/{id}")
+    @PostMapping("/delete/{id}")
     public String deleteSpell(@PathVariable Long id) {
         spellService.deleteSpell(id);
         return "redirect:/spells";

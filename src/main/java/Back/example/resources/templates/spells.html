@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Hechizos</title>
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Opcional: enlace a un archivo CSS externo -->
+</head>
+<body>
+<header>
+    <h1>Gestión de Hechizos</h1>
+    <nav>
+        <a href="/home">Inicio</a> |
+        <a href="/audit">Registro de Auditoría</a> |
+        <a href="/users">Gestión de Usuarios</a>
+    </nav>
+</header>
+<main>
+    <h2>Lista de Hechizos</h2>
+    <ul>
+        <!-- Aquí se renderizan los hechizos -->
+        <li th:each="spell : ${spells}">
+            <span th:text="${spell.name}">Nombre del Hechizo</span> -
+            <span th:text="${spell.type}">Tipo</span> -
+            <span th:text="${spell.effect}">Efecto</span>
+            <form th:action="@{/spells/delete/{id}(id=${spell.id})}" method="post" style="display:inline;">
+                <button type="submit" onclick="return confirm('¿Estás seguro de que deseas eliminar este hechizo?')">Eliminar</button>
+            </form>
+        </li>
+    </ul>
+
+    <h2>Agregar Nuevo Hechizo</h2>
+    <form th:action="@{/spells/add}" method="post">
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="type">Tipo:</label>
+        <input type="text" id="type" name="type" required><br>
+
+        <label for="effect">Efecto:</label>
+        <input type="text" id="effect" name="effect" required><br>
+
+        <button type="submit">Agregar Hechizo</button>
+    </form>
+</main>
+</body>
+</html>

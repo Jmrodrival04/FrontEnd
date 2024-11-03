@@ -1,0 +1,9 @@
+<!-- templates/components/footer.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<footer>
+  <p th:text="'Sistema de Gestión Mágica © ' + ${#dates.format(#dates.createNow(), 'yyyy')}"></p>
+</footer>
+</body>
+</html>

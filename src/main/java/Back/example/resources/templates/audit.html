@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Auditoría</title>
+</head>
+<body>
+<header>
+  <h1>Registro de Auditoría</h1>
+  <nav>
+    <a href="/">Inicio</a> |
+    <a href="/spells">Gestión de Hechizos</a> |
+    <a href="/users">Gestión de Usuarios</a>
+  </nav>
+</header>
+<main>
+  <h2>Lista de Registros de Auditoría</h2>
+  <ul>
+    <!-- Aquí se renderizan los registros de auditoría -->
+    <li th:each="log : ${auditLogs}">
+      <span th:text="${log.action}">Acción</span> -
+      <span th:text="${log.performedBy}">Realizado por</span> -
+      <span th:text="${log.timestamp}">Fecha y Hora</span>
+    </li>
+  </ul>
+</main>
+</body>
+</html>

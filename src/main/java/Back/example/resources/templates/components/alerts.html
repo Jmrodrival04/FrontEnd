@@ -1,0 +1,11 @@
+<!-- templates/components/alerts.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class="alerts">
+  <ul>
+    <li th:each="alert : ${alerts}" th:text="${alert}">Mensaje de alerta</li>
+  </ul>
+</div>
+</body>
+</html>

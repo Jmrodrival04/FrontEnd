@@ -1,0 +1,11 @@
+<!-- templates/components/spell-card.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class="spell-card">
+  <h2 th:text="${spellName}">Nombre del Hechizo</h2>
+  <p><strong>Tipo:</strong> <span th:text="${spellType}">Tipo de Hechizo</span></p>
+  <p><strong>Efecto:</strong> <span th:text="${spellEffect}">Efecto del Hechizo</span></p>
+</div>
+</body>
+</html>
