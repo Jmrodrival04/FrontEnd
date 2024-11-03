@@ -25,10 +25,9 @@ public class RoleService {
     }
 
     // Encuentra un rol por su ID
-    public Role findById(Long id) {
+    public Optional<Role> findById(Long id) { // Retorna Optional<Role> ahora
         logger.info("Buscando rol por ID: " + id);
-        return roleRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Rol no encontrado con ID: " + id));
+        return roleRepository.findById(id);
     }
 
     // Encuentra un rol por su nombre
@@ -48,10 +47,6 @@ public class RoleService {
     @Transactional
     public void deleteById(Long id) {
         logger.info("Eliminando rol con ID: " + id);
-        if (roleRepository.existsById(id)) {
-            roleRepository.deleteById(id);
-        } else {
-            throw new RuntimeException("Rol no encontrado con ID: " + id);
-        }
+        roleRepository.deleteById(id);
     }
 }

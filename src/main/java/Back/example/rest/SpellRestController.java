@@ -12,8 +12,12 @@ import java.util.List;
 @RequestMapping("/api/spells")
 public class SpellRestController {
 
+    private final SpellService spellService;
+
     @Autowired
-    private SpellService spellService;
+    public SpellRestController(SpellService spellService) {
+        this.spellService = spellService;
+    }
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping
@@ -33,3 +37,4 @@ public class SpellRestController {
         spellService.deleteSpell(id);
     }
 }
+

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 @Service
@@ -23,11 +24,10 @@ public class AuditService {
         return auditLogRepository.findAll();
     }
 
-    // Busca un registro de auditoría por ID
-    public AuditLog findById(Long id) {
+    // Busca un registro de auditoría por ID y devuelve un Optional
+    public Optional<AuditLog> findById(Long id) {
         logger.info("Buscando registro de auditoría por ID: " + id);
-        return auditLogRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Registro de auditoría no encontrado con ID: " + id));
+        return auditLogRepository.findById(id);
     }
 
     // Guarda un nuevo registro de auditoría

@@ -11,5 +11,23 @@ public class AppConfig {
         return "Magic Management System";
     }
 
-    // Aquí puedes añadir otros beans que se requieran en toda la aplicación.
+    @Bean
+    public String dateFormat() {
+        return "yyyy-MM-dd HH:mm:ss";
+    }
+
+    @Bean
+    public int maxLoginAttempts() {
+        return 5;
+    }
+
+    @Bean
+    public int defaultPageSize() {
+        return 20; // Tamaño de página por defecto para la paginación
+    }
+
+    @Bean
+    public String defaultTimeZone() {
+        return "UTC"; // Zona horaria por defecto para registros de auditoría y logs
+    }
 }

@@ -15,6 +15,17 @@ public class AuditConfig {
 
     @After("execution(* Back.example.service.*.*(..))")
     public void logAuditTrail(JoinPoint joinPoint) {
-        auditLogger.info("Auditoría: método ejecutado - " + joinPoint.getSignature().getName());
+        String methodName = joinPoint.getSignature().getName();
+        Object[] args = joinPoint.getArgs();
+
+        auditLogger.info("Auditoría: Método ejecutado - " + methodName);
+
+        // Opcional: log de parámetros si es necesario
+        if (args.length > 0) {
+            auditLogger.info("Parámetros:");
+            for (Object arg : args) {
+                auditLogger.info("  - " + arg);
+            }
+        }
     }
 }

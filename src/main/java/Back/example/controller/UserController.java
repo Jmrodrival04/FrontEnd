@@ -1,7 +1,7 @@
 package Back.example.controller;
 
 import Back.example.model.User;
-import Back.example.model.Role; // Asegúrate de tener la clase Role correctamente configurada
+import Back.example.model.Role;
 import Back.example.service.UserService;
 import Back.example.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class UserController {
 
     private final UserService userService;
-    private final RoleService roleService; // Para obtener roles disponibles
+    private final RoleService roleService;
 
     @Autowired
     public UserController(UserService userService, RoleService roleService) {
@@ -26,7 +26,7 @@ public class UserController {
     @GetMapping("/users")
     public String getUsers(Model model) {
         model.addAttribute("users", userService.findAll());
-        return "users"; // Muestra el archivo users.html en templates
+        return "users";
     }
 
     @PostMapping("/users/add")
@@ -35,6 +35,6 @@ public class UserController {
                 .orElseThrow(() -> new RuntimeException("Rol no encontrado: " + role));
         User newUser = new User(username, password, userRole);
         userService.save(newUser);
-        return "redirect:/users"; // Redirige a la página de usuarios después de agregar
+        return "redirect:/users";
     }
 }

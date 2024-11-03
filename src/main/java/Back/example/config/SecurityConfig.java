@@ -11,7 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.core.userdetails.UserDetailsService;
 
 @Configuration
 @EnableWebSecurity
@@ -26,10 +25,11 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable()) // Desactiva CSRF
+                .csrf(csrf -> csrf.disable()) // Desactiva CSRF para simplificar la configuración
                 .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/api/spells/**").hasRole("ADMIN") // Define permisos para cada ruta
-                        .requestMatchers("/api/users/**").hasRole("USER")
+                        .requestMatchers("/api/access-control/**").hasRole("ADMIN") // Permisos para administrador
+                        .requestMatchers("/api/users/**").hasRole("USER")          // Permisos para usuarios
+                        .requestMatchers("/api/spells/**").hasAnyRole("USER", "ADMIN") // Permisos para usuarios y administradores en spells
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form.permitAll())

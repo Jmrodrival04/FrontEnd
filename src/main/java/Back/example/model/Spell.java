@@ -43,7 +43,7 @@ public class Spell {
         this.lastModifiedDate = lastModifiedDate != null ? lastModifiedDate : LocalDateTime.now();
     }
 
-    // Constructor para crear un nuevo hechizo sin ID ni campos de auditoría
+    // Constructor simplificado para nuevos hechizos
     public Spell(String name, String type, String effect) {
         this.name = name;
         this.type = type;
@@ -52,69 +52,29 @@ public class Spell {
     }
 
     // Getters y Setters
-    public Long getId() {
-        return id;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
-    public String getName() {
-        return name;
-    }
+    public String getType() { return type; }
+    public void setType(String type) { this.type = type; }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public String getEffect() { return effect; }
+    public void setEffect(String effect) { this.effect = effect; }
 
-    public String getType() {
-        return type;
-    }
+    public String getCreatedBy() { return createdBy; }
+    public void setCreatedBy(String createdBy) { this.createdBy = createdBy; }
 
-    public void setType(String type) {
-        this.type = type;
-    }
+    public LocalDateTime getCreatedDate() { return createdDate; }
+    public void setCreatedDate(LocalDateTime createdDate) { this.createdDate = createdDate; }
 
-    public String getEffect() {
-        return effect;
-    }
+    public String getLastModifiedBy() { return lastModifiedBy; }
+    public void setLastModifiedBy(String lastModifiedBy) { this.lastModifiedBy = lastModifiedBy; }
 
-    public void setEffect(String effect) {
-        this.effect = effect;
-    }
-
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public LocalDateTime getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(LocalDateTime createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public String getLastModifiedBy() {
-        return lastModifiedBy;
-    }
-
-    public void setLastModifiedBy(String lastModifiedBy) {
-        this.lastModifiedBy = lastModifiedBy;
-    }
-
-    public LocalDateTime getLastModifiedDate() {
-        return lastModifiedDate;
-    }
-
-    public void setLastModifiedDate(LocalDateTime lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
-    }
+    public LocalDateTime getLastModifiedDate() { return lastModifiedDate; }
+    public void setLastModifiedDate(LocalDateTime lastModifiedDate) { this.lastModifiedDate = lastModifiedDate; }
 
     // Método toString para depuración
     @Override

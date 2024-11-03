@@ -8,5 +8,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface AuditableAction {
-    String actionType(); // Tipo de acción realizada, por ejemplo, "CREATE", "UPDATE", etc.
+
+    String actionType();
+    String description() default "";
 }

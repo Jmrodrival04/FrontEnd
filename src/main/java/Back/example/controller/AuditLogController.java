@@ -17,9 +17,13 @@ public class AuditLogController {
         this.auditService = auditService;
     }
 
+    /**
+     * Método para manejar las solicitudes GET en "/audit"
+     * que retorna la lista de registros de auditoría.
+     */
     @GetMapping("/audit")
     public String getAuditLogs(Model model) {
-        model.addAttribute("auditLogs", auditService.findAll()); // Cambiado para coincidir con el método en AuditService
-        return "audit-log"; // Muestra el archivo audit-log.html en templates
+        model.addAttribute("auditLogs", auditService.findAll());
+        return "audit-log"; // Renderiza la vista audit-log.html en templates
     }
 }

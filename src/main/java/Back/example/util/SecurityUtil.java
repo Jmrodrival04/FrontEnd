@@ -5,22 +5,21 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 public class SecurityUtil {
 
-    private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    private static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
+    private static final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}$";
 
     // Método para encriptar una contraseña
     public static String encryptPassword(String rawPassword) {
-        return passwordEncoder.encode(rawPassword);
+        return PASSWORD_ENCODER.encode(rawPassword);
     }
 
     // Método para verificar si la contraseña sin encriptar coincide con la encriptada
     public static boolean matchesPassword(String rawPassword, String encodedPassword) {
-        return passwordEncoder.matches(rawPassword, encodedPassword);
+        return PASSWORD_ENCODER.matches(rawPassword, encodedPassword);
     }
 
     // Método para validar la fortaleza de una contraseña
     public static boolean isPasswordStrong(String password) {
-        // Al menos 8 caracteres, una letra mayúscula, una minúscula, un número y un símbolo especial
-        String passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,}$";
-        return password.matches(passwordPattern);
+        return password != null && password.matches(PASSWORD_PATTERN);
     }
 }

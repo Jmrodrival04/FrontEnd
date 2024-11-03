@@ -2,6 +2,7 @@ package Back.example.model;
 
 import Back.example.util.Auditable;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,16 +12,20 @@ import java.util.Collection;
 import java.util.Collections;
 
 @Entity
+@Table(name = "app_user") // Cambiamos el nombre de la tabla para evitar conflicto
 public class User implements Auditable, UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "El nombre de usuario es obligatorio")
     private String username;
+
+    @NotBlank(message = "La contraseña es obligatoria")
     private String password;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Role role;
 
     // Campos de auditoría
@@ -50,39 +55,6 @@ public class User implements Auditable, UserDetails {
         this.password = password;
         this.role = role;
         this.createdDate = LocalDateTime.now();
-    }
-
-    // Getters y Setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
     }
 
     // Implementación de los métodos de auditoría
@@ -151,6 +123,23 @@ public class User implements Auditable, UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    // Métodos get y set
+    public Long getId() { return id; }
+
+    public void setId(Long id) { this.id = id; }
+
+    public String getUsername() { return username; }
+
+    public void setUsername(String username) { this.username = username; }
+
+    public String getPassword() { return password; }
+
+    public void setPassword(String password) { this.password = password; }
+
+    public Role getRole() { return role; }
+
+    public void setRole(Role role) { this.role = role; }
 
     // Método toString para depuración
     @Override

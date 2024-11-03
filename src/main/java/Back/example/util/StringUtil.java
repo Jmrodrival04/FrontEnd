@@ -20,7 +20,7 @@ public class StringUtil {
         if (isNullOrEmpty(str)) {
             return str;
         }
-        String[] words = str.split(" ");
+        String[] words = str.split("\\s+"); // Split por cualquier cantidad de espacios en blanco
         StringBuilder titleCase = new StringBuilder();
         for (String word : words) {
             titleCase.append(capitalize(word)).append(" ");

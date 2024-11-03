@@ -1,30 +1,24 @@
 package Front.example.components;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-@Component
+@Controller
 @RequestMapping("/spell-card")
 public class SpellCardComponent {
 
-    private String name;
-    private String type;
-    private String effect;
-
-    // Constructor con los datos del hechizo
-    public SpellCardComponent(String name, String type, String effect) {
-        this.name = name;
-        this.type = type;
-        this.effect = effect;
-    }
-
     @GetMapping
-    public String renderSpellCard(Model model) {
+    public String renderSpellCard(
+            @RequestParam String name,
+            @RequestParam String type,
+            @RequestParam String effect,
+            Model model) {
         model.addAttribute("spellName", name);
         model.addAttribute("spellType", type);
         model.addAttribute("spellEffect", effect);
-        return "components/spell-card";  // Aquí debería apuntar a un archivo spell-card.html en templates
+        return "components/spell-card"; // Apunta a un archivo spell-card.html en templates
     }
 }

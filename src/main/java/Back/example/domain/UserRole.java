@@ -20,4 +20,10 @@ public class UserRole {
 
     private String roleName; // Nombre del rol, por ejemplo, "Admin", "User"
     private String description; // Descripción del rol y sus permisos
+
+    // Constructor adicional para roles específicos
+    public UserRole(String roleName, String description) {
+        this.roleName = roleName;
+        this.description = description;
+    }
 }

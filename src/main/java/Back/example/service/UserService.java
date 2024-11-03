@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.logging.Logger;
 
 @Service
@@ -26,10 +25,11 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    // Encuentra un usuario por su ID
-    public Optional<User> findById(Long id) {
+    // Encuentra un usuario por su ID y lanza una excepción si no se encuentra
+    public User findById(Long id) {
         logger.info("Buscando usuario por ID: " + id);
-        return userRepository.findById(id);
+        return userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado con ID: " + id));
     }
 
     // Guarda un nuevo usuario

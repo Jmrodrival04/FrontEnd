@@ -11,8 +11,12 @@ import java.util.List;
 @RequestMapping("/api/audit")
 public class AuditRestController {
 
+    private final AuditService auditService;
+
     @Autowired
-    private AuditService auditService;
+    public AuditRestController(AuditService auditService) {
+        this.auditService = auditService;
+    }
 
     @GetMapping
     public List<AuditLog> getAllAuditLogs() {
@@ -21,7 +25,8 @@ public class AuditRestController {
 
     @GetMapping("/{id}")
     public AuditLog getAuditLogById(@PathVariable Long id) {
-        return auditService.findById(id);
+        return auditService.findById(id)
+                .orElseThrow(() -> new RuntimeException("Registro de auditoría no encontrado con ID: " + id));
     }
 
     @PostMapping

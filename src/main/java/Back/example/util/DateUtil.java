@@ -6,10 +6,11 @@ import java.time.temporal.ChronoUnit;
 
 public class DateUtil {
 
-    // Método para formatear una fecha a una cadena legible
+    private static final DateTimeFormatter DEFAULT_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+    // Método para formatear una fecha a una cadena legible usando el formato predeterminado
     public static String formatDateTime(LocalDateTime dateTime) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        return dateTime.format(formatter);
+        return dateTime != null ? dateTime.format(DEFAULT_FORMATTER) : "N/A";
     }
 
     // Método para calcular la diferencia en días entre dos fechas

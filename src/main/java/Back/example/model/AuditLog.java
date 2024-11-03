@@ -20,6 +20,8 @@ public class AuditLog {
     @NotBlank(message = "El campo 'realizado por' es obligatorio")
     private String performedBy;
 
+    private String description; // Nuevo campo para la descripción de la acción
+
     private LocalDateTime timestamp;
 
     // Constructor sin argumentos requerido por JPA
@@ -27,17 +29,18 @@ public class AuditLog {
     }
 
     // Constructor completo
-    public AuditLog(Long id, String action, String performedBy, LocalDateTime timestamp) {
-        this.id = id;
+    public AuditLog(String action, String performedBy, String description, LocalDateTime timestamp) {
         this.action = action;
         this.performedBy = performedBy;
+        this.description = description;
         this.timestamp = timestamp;
     }
 
-    // Constructor para crear nuevos registros de auditoría
-    public AuditLog(String action, String performedBy) {
+    // Constructor para crear un nuevo registro de auditoría con la hora actual
+    public AuditLog(String action, String performedBy, String description) {
         this.action = action;
         this.performedBy = performedBy;
+        this.description = description;
         this.timestamp = LocalDateTime.now(); // Configurar la fecha y hora actuales
     }
 
@@ -66,6 +69,14 @@ public class AuditLog {
         this.performedBy = performedBy;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public LocalDateTime getTimestamp() {
         return timestamp;
     }
@@ -74,13 +85,14 @@ public class AuditLog {
         this.timestamp = timestamp;
     }
 
-    // Método toString opcional para facilitar la depuración
+    // Método toString para depuración
     @Override
     public String toString() {
         return "AuditLog{" +
                 "id=" + id +
                 ", action='" + action + '\'' +
                 ", performedBy='" + performedBy + '\'' +
+                ", description='" + description + '\'' +
                 ", timestamp=" + timestamp +
                 '}';
     }

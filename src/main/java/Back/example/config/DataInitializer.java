@@ -19,15 +19,17 @@ public class DataInitializer {
     @Bean
     CommandLineRunner initData(UserRepository userRepository, RoleRepository roleRepository) {
         return args -> {
-            Role adminRole = new Role("ROLE_ADMIN");
-            Role userRole = new Role("ROLE_USER");
-            roleRepository.save(adminRole);
-            roleRepository.save(userRole);
+            // Buscar roles, y si no existen, crearlos
+            Role adminRole = roleRepository.findByName("ROLE_ADMIN").orElseGet(() -> roleRepository.save(new Role("ROLE_ADMIN")));
+            Role userRole = roleRepository.findByName("ROLE_USER").orElseGet(() -> roleRepository.save(new Role("ROLE_USER")));
 
-            User admin = new User("admin", passwordEncoder.encode("admin123"), adminRole);
-            User user = new User("user", passwordEncoder.encode("user123"), userRole);
-            userRepository.save(admin);
-            userRepository.save(user);
+            // Buscar usuarios, y si no existen, crearlos con los roles encontrados
+            if (userRepository.findByUsername("admin").isEmpty()) {
+                userRepository.save(new User("admin", passwordEncoder.encode("admin123"), adminRole));
+            }
+            if (userRepository.findByUsername("user").isEmpty()) {
+                userRepository.save(new User("user", passwordEncoder.encode("user123"), userRole));
+            }
         };
     }
 }

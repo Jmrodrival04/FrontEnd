@@ -2,7 +2,6 @@ package Back.example.service;
 
 import Back.example.annotations.AuditableAction;
 import Back.example.annotations.SecuredAction;
-import Back.example.annotations.TransactionalAction;
 import Back.example.model.Spell;
 import Back.example.repos.SpellRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +16,16 @@ public class SpellService {
 
     private static final Logger logger = Logger.getLogger(SpellService.class.getName());
 
+    private final SpellRepository spellRepository;
+
     @Autowired
-    private SpellRepository spellRepository;
+    public SpellService(SpellRepository spellRepository) {
+        this.spellRepository = spellRepository;
+    }
 
     @SecuredAction("ROLE_ADMIN")
     @AuditableAction(actionType = "CREATE")
-    @Transactional // Asegura transaccionalidad en caso de fallo en @TransactionalAction
+    @Transactional
     public Spell saveSpell(Spell spell) {
         logger.info("Guardando nuevo hechizo: " + spell.getName());
         return spellRepository.save(spell);
@@ -37,14 +40,14 @@ public class SpellService {
 
     @SecuredAction("ROLE_ADMIN")
     @AuditableAction(actionType = "DELETE")
-    @Transactional // Asegura transaccionalidad en caso de fallo en @TransactionalAction
+    @Transactional
     public void deleteSpell(Long id) {
         logger.info("Eliminando hechizo con ID: " + id);
-        if (spellRepository.existsById(id)) {
-            spellRepository.deleteById(id);
-        } else {
-            throw new RuntimeException("Hechizo no encontrado con ID: " + id);
-        }
+        spellRepository.findById(id)
+                .ifPresentOrElse(
+                        spell -> spellRepository.deleteById(id),
+                        () -> { throw new RuntimeException("Hechizo no encontrado con ID: " + id); }
+                );
     }
 
     @SecuredAction("ROLE_USER")

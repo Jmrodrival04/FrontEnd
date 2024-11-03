@@ -25,8 +25,7 @@ public class UserRestController {
 
     @GetMapping("/{id}")
     public User getUserById(@PathVariable Long id) {
-        return userService.findById(id)
-                .orElseThrow(() -> new RuntimeException("Usuario no encontrado con ID: " + id));
+        return userService.findById(id);
     }
 
     @PostMapping

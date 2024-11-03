@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Hechizos</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
 <header>
     <h1>Gestión de Hechizos</h1>
 </header>
 <nav class="main-nav">
-    <a href="/">Inicio</a> |
-    <a href="/audit">Registro de Auditoría</a> |
-    <a href="/users">Gestión de Usuarios</a>
+    <a th:href="@{/home}">Inicio</a> |
+    <a th:href="@{/audit}">Registro de Auditoría</a> |
+    <a th:href="@{/users}">Gestión de Usuarios</a>
 </nav>
 <section>
     <h2>Hechizos Disponibles</h2>

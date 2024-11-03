@@ -9,12 +9,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/navbar")
 public class NavbarComponent {
 
+    private static final String HOME_LINK = "/";
+    private static final String SPELL_MANAGEMENT_LINK = "/spells";
+    private static final String AUDIT_LOG_LINK = "/audit";
+    private static final String ACCESS_CONTROL_LINK = "/access-control";
+
     @GetMapping
     public String renderNavbar(Model model) {
-        model.addAttribute("homeLink", "/");
-        model.addAttribute("spellManagementLink", "/spells");
-        model.addAttribute("auditLogLink", "/audit");
-        model.addAttribute("accessControlLink", "/access-control");
-        return "components/navbar";  // Aquí debería apuntar a un archivo navbar.html en templates
+        model.addAttribute("homeLink", HOME_LINK);
+        model.addAttribute("spellManagementLink", SPELL_MANAGEMENT_LINK);
+        model.addAttribute("auditLogLink", AUDIT_LOG_LINK);
+        model.addAttribute("accessControlLink", ACCESS_CONTROL_LINK);
+        return "components/navbar";  // Apunta al archivo navbar.html en templates
     }
 }

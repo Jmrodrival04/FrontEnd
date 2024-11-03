@@ -11,10 +11,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class SecurityAspect {
 
+
     @Before("@annotation(securedAction)")
     public void checkPermission(SecuredAction securedAction) {
         // Obtener el usuario autenticado
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
         if (!(principal instanceof UserDetails)) {
             throw new SecurityException("Usuario no autenticado");
         }
@@ -23,8 +25,10 @@ public class SecurityAspect {
         String requiredRole = securedAction.value();
 
         // Comprobar si el usuario tiene el rol necesario
-        if (userDetails.getAuthorities().stream().noneMatch(
-                authority -> authority.getAuthority().equals(requiredRole))) {
+        boolean hasRequiredRole = userDetails.getAuthorities().stream()
+                .anyMatch(authority -> authority.getAuthority().equals(requiredRole));
+
+        if (!hasRequiredRole) {
             throw new SecurityException("Permisos insuficientes para realizar esta acción");
         }
     }
